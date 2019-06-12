@@ -80,16 +80,29 @@ public class GateView extends FixedPanel implements ItemListener {
 
     @Override
     public void paintComponent(Graphics g) {
+        int outPutSize=gate.getOutputSize();
         super.paintComponent(g);
+        int x = BORDER;
+        int y =  -(SWITCH_SIZE / 2);;
+        int step = (GATE_HEIGHT / (outPutSize + 1));
 
         g.drawImage(image, BORDER + SWITCH_SIZE, 0, GATE_WIDTH, GATE_HEIGHT, this);
 
-        if (gate.read()) {
-            g.setColor(Color.RED);
-        } else {
-            g.setColor(Color.BLACK);
+        for (int i = 0; i < gate.getOutputSize(); i++) {
+            y+=step;
+
+
+            if (gate.read(i)) {
+                g.setColor(Color.RED);
+            } else {
+                g.setColor(Color.BLACK);
+            }
+            g.fillOval(BORDER + SWITCH_SIZE + GATE_WIDTH, y+LIGHT_SIZE/4, LIGHT_SIZE, LIGHT_SIZE);
+
+
+
+//            System.out.println(y,step);
         }
-        g.fillOval(BORDER + SWITCH_SIZE + GATE_WIDTH, (GATE_HEIGHT - LIGHT_SIZE) / 2, LIGHT_SIZE, LIGHT_SIZE);
 
         getToolkit().sync();
     }

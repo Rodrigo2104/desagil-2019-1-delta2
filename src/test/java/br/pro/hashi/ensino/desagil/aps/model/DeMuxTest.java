@@ -40,3 +40,7 @@ public class DeMuxTest {
         Assertions.assertTrue(gate.read(1));
     }
 }
+//0,0-0,0
+//0,1-0,0
+//1,0-1,0
+//1,1-0,1
